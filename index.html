@@ -316,7 +316,6 @@ based on: mdict-js
                   //lv.append(item);
                   if(lastSelection==pos+i){
                       lastTarget = item;
-                      item.style.setProperty("background-color","#4296FA");
                   }
                   lv.appendChild(item);
               }
@@ -330,7 +329,6 @@ based on: mdict-js
           //lastTarget.style.setProperty("background-color", "transparent");
               lastTarget.removeAttribute("style");//有点喜欢上写页面了呢
           lastTarget=e.target;
-          lastTarget.style.setProperty("background-color","#4296FA");
           if(currentDict)
               currentDict.renderDef(parseInt(e.target.id));
           //e.target.background("#0000ff");
@@ -386,9 +384,6 @@ based on: mdict-js
               },
               barSize:10,
               needleSize:0.3,
-              thumbColor: '#00cccccc',
-              negativeColor: '#000',
-              positiveColor: '#000',
               value: 0
           });
           seekBarmy.setValue(seekBarmy.maxValue)

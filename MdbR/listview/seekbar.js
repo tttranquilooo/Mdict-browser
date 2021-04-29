@@ -8,7 +8,7 @@ if (!Seekbar)var Seekbar = {};
 Seekbar.Seekbar = function (config) {
     config = config || {};
 
-    var props = ["minValue", "maxValue", "value", "valueListener", "negativeColor", "positiveColor", "needleSize", "barSize"];
+    var props = ["minValue", "maxValue", "value", "valueListener", "needleSize", "barSize"];
     for (var i = 0; i < props.length; i++) {
         var key = props[i];
         if (config[key] != undefined)this[key] = config[key];
@@ -17,15 +17,6 @@ Seekbar.Seekbar = function (config) {
 
     if (config.renderTo != undefined)this.renderTo = $(config.renderTo);
 
-    if (config.thumbColor != undefined) {
-        if (config.thumbColor.length == 9) {
-            var alpha = config.thumbColor.substr(1, 2);
-            this.thumbAlpha = parseInt(alpha, 16) / 255;
-            config.thumbColor = "#" + config.thumbColor.substr(3);
-        }
-        this.thumbColor = config.thumbColor;
-    }
-
 
     this.render();
 };
@@ -33,9 +24,6 @@ Seekbar.Seekbar = function (config) {
 $.extend(Seekbar.Seekbar.prototype, {
     thumbAlpha: 1,
     renderTo: undefined,
-    negativeColor: '#006699',
-    positiveColor: '#ccc',
-    thumbColor: '#006699',
 
     minValue: 0,
     maxValue: 10,
@@ -96,26 +84,6 @@ $.extend(Seekbar.Seekbar.prototype, {
 
         this.elNegative = $('<div class="seekbar-negative" style="position:absolute;z-index:1"></div>');
         this.elPositive = $('<div class="seekbar-positive" style="position:absolute;z-index:1"></div>');
-
-
-
-        if (this.negativeColor != undefined) {
-            this.elNegative.css("background-color", this.negativeColor);
-        }
-        if (this.positiveColor != undefined) {
-            this.elPositive.css("background-color", this.positiveColor);
-        }
-
-
-        this.thumb = $('<div style="position:absolute;z-index:4"></div>');
-        this.thumbInner = $('<div class="seekbar-thumb-needle" style="position:absolute;z-index:5;background-color:' + this.thumbColor + '"></div>');
-        this.thumbOuter = $('<div class="seekbar-thumb" style="position:absolute;z-index:5;width:100%;height:100%;background-color:' + this.thumbColor + '"></div>');
-
-        if (this.thumbColor != undefined) {
-            this.thumbInner.css("background-color", this.thumbColor);
-            this.thumbOuter.css("background-color", this.thumbColor);
-
-        }
 
         this.updateAlpha();
 
